@@ -22,7 +22,7 @@ docker volume rm blog-data
 ### 启动数据库
 ```
 mkdir blog-data
-docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2;
 ```
 
 ### 创建数据库
@@ -38,7 +38,10 @@ yarn m:run
 node dist/seed.js
 ```
 
-
+### 删除之前的数据库
+```
+drop database 表名
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
