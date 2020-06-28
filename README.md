@@ -9,6 +9,36 @@ npm run dev
 # or
 yarn dev
 ```
+### 清空之前开发环境
+```
+docker kill 容器id
+docker rm 容器id
+rm -rf blog-data
+或
+docker container prune
+docker volume rm blog-data
+```
+
+### 启动数据库
+```
+mkdir blog-data
+docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+```
+
+### 创建数据库
+```
+docker exec -it 容器id bash
+psql -U blog
+CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYPE 'en_US.utf8';
+```
+
+### 创建数据表
+```
+yarn m:run
+node dist/seed.js
+```
+
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
